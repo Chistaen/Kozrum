@@ -35,6 +35,7 @@ int main() {
         {
             currentLevel = 0;
             maxLevel = levelDistance(randomGenerator);
+            std::cout << std::endl;
         }
         else
             currentLevel++;

@@ -19,7 +19,7 @@ Header header;
 Section section;
 
 int main() {
-    std::uniform_int_distribution<int> distance(1, 10);
+    std::uniform_int_distribution<int> distance(2, 10);
     std::uniform_int_distribution<int> levelDistance(0, 3);
 
     std::string currentSection = "init";
@@ -31,9 +31,8 @@ int main() {
 
     while (nr > 0)
     {
-        std::cout << "<h" << currentLevel + 1 << ">" << header.generate() << "</h"
-                  << currentLevel + 1 << ">" << std::endl;
-
+        header.setLevel(currentLevel);
+        header.generate();
         section.generate();
 
         if (currentLevel > maxLevel)

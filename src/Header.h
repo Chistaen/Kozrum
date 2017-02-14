@@ -4,10 +4,12 @@
 class Header {
 public:
     Header();
-    std::string generate();
+    void generate();
+    void setLevel(int t_level);
 
 private:
     std::mt19937_64 m_randomGenerator;
+    int m_level;
 };
 
 #endif //KOZRUM_HEADER_H

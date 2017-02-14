@@ -14,16 +14,18 @@
 #include "Header.h"
 
 Header::Header()
-    : m_randomGenerator((unsigned long) time(nullptr))
+    : m_randomGenerator((unsigned long) time(nullptr)),
+      m_level(0)
 {}
 
-std::string Header::generate()
+void Header::generate()
 {
     std::vector<std::string> headers = {
             "bubbles", "watermelons", "big mountains", "have fun",
             "good luck", "champagne", "great", "eat a melon", "oh, no",
             "don't you touch my guitar.", "weird things", "what a strange lady.",
-            "New York", "this is a robbery"
+            "New York", "this is a robbery", "sir", "madam", "fantastic",
+            "house party"
     };
     std::vector<std::string> usedWords {};
 
@@ -32,7 +34,9 @@ std::string Header::generate()
 
     std::string words;
     int wordsToDisplay = wordcount(m_randomGenerator);
-    bool shouldCapitalize = true;
+    bool capitalizeNextWord = true;
+
+    std::cout << "<h" << m_level + 1 << ">";
 
     int i = 0;
     while (i < wordsToDisplay)
@@ -41,23 +45,23 @@ std::string Header::generate()
 
         if (std::find(usedWords.begin(), usedWords.end(), randomWord) == usedWords.end())
         {
-            if (shouldCapitalize)
+            if (capitalizeNextWord)
             {
                 randomWord[0] = (char) toupper(randomWord[0]);
-                shouldCapitalize = false;
+                capitalizeNextWord = false;
             }
 
-            words += randomWord;
+            std::cout << randomWord;
 
             if (i != wordsToDisplay - 1)
             {
                 if (randomWord.substr(randomWord.size() - 1, 1) == ".")
                 {
-                    shouldCapitalize = true;
-                    words += " ";
+                    capitalizeNextWord = true;
+                    std::cout << " ";
                 }
                 else
-                    words += ", ";
+                    std::cout << ", ";
             }
 
             i++;
@@ -65,5 +69,10 @@ std::string Header::generate()
         }
     }
 
-    return words;
+    std::cout << "</h" << m_level + 1 << ">" << std::endl;
+}
+
+void Header::setLevel(int t_level)
+{
+    m_level = t_level;
 }

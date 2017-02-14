@@ -15,9 +15,7 @@
 
 Header::Header()
     : m_randomGenerator((unsigned long) time(nullptr))
-{
-
-}
+{}
 
 std::string Header::generate()
 {

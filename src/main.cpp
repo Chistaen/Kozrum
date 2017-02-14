@@ -16,18 +16,28 @@ std::mt19937_64 randomGenerator((unsigned long) time(nullptr));
 Header header;
 
 int main() {
-    std::uniform_int_distribution<int> distance(1, 12);
-    std::string currentSection = "init";
+    std::uniform_int_distribution<int> distance(1, 10);
+    std::uniform_int_distribution<int> levelDistance(0, 3);
 
+    std::string currentSection = "init";
     std::vector<std::string> closeTags;
+
     int nr = distance(randomGenerator);
+    int currentLevel = 0;
+    int maxLevel = levelDistance(randomGenerator);
 
     while (nr > 0)
     {
-        if (currentSection == "init")
+        std::cout << "<h" << currentLevel + 1 << ">" << header.generate() << "</h"
+                  << currentLevel + 1 << ">" << std::endl;
+
+        if (currentLevel > maxLevel)
         {
-            std::cout << "<h1>" << header.generate() << "</h1>" << std::endl;
+            currentLevel = 0;
+            maxLevel = levelDistance(randomGenerator);
         }
+        else
+            currentLevel++;
 
         nr--;
     }

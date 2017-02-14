@@ -11,9 +11,12 @@
 #include <random>
 
 #include "Header.h"
+#include "Content.h"
 
 std::mt19937_64 randomGenerator((unsigned long) time(nullptr));
+
 Header header;
+Content content;
 
 int main() {
     std::uniform_int_distribution<int> distance(1, 10);
@@ -30,6 +33,8 @@ int main() {
     {
         std::cout << "<h" << currentLevel + 1 << ">" << header.generate() << "</h"
                   << currentLevel + 1 << ">" << std::endl;
+
+        content.generate();
 
         if (currentLevel > maxLevel)
         {

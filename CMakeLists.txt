@@ -3,5 +3,5 @@ project(Kozrum)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES src/main.cpp src/Header.cpp src/Header.h)
+set(SOURCE_FILES src/main.cpp src/Header.cpp src/Header.h src/Content.cpp src/Content.h)
 add_executable(Kozrum ${SOURCE_FILES})

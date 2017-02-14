@@ -30,7 +30,7 @@ void Header::generate()
     std::vector<std::string> usedWords {};
 
     std::uniform_int_distribution<int> distance(0, (int) headers.size() - 1);
-    std::uniform_int_distribution<int> wordcount(1, 3);
+    std::uniform_int_distribution<int> wordcount(1, 2);
 
     std::string words;
     int wordsToDisplay = wordcount(m_randomGenerator);

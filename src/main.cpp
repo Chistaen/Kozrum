@@ -19,15 +19,15 @@ Header header;
 Section section;
 
 int main() {
-    std::uniform_int_distribution<int> headersDistance(2, 10);
-    std::uniform_int_distribution<int> levelDistance(1, 3);
+    std::uniform_int_distribution<int> sections(2, 10);
+    std::uniform_int_distribution<int> levels(1, 3);
 
     std::string currentSection = "init";
     std::vector<std::string> closeTags;
 
-    int nr = headersDistance(randomGenerator);
+    int nr = sections(randomGenerator);
     int currentLevel = 0;
-    int maxLevel = levelDistance(randomGenerator);
+    int maxLevel = levels(randomGenerator);
 
     for (int i = 0; i < nr; i++)
     {
@@ -39,7 +39,7 @@ int main() {
             currentLevel++;
         }
 
-        maxLevel = levelDistance(randomGenerator);
+        maxLevel = levels(randomGenerator);
         currentLevel = 0;
         std::cout << std::endl;
     }

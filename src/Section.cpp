@@ -7,12 +7,9 @@
  * @license     Apache 2.0
  */
 
-#ifndef KOZRUM_CONTENT_H
-#define KOZRUM_CONTENT_H
+#include "Section.h"
 
-class Content {
-public:
-    void generate();
-};
+void Section::generate()
+{
 
-#endif //KOZRUM_CONTENT_H
+}

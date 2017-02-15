@@ -10,7 +10,8 @@
 #ifndef KOZRUM_SECTION_H
 #define KOZRUM_SECTION_H
 
-class Section {
+class Section
+{
 public:
     void generate();
 };

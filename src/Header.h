@@ -1,14 +1,14 @@
 #ifndef KOZRUM_HEADER_H
 #define KOZRUM_HEADER_H
 
-class Header {
+class Header
+{
 public:
-    Header();
-    void generate();
-    void setLevel(int t_level);
+    Header(std::mt19937_64* t_header, int t_level);
+    void display();
 
 private:
-    std::mt19937_64 m_randomGenerator;
+    std::mt19937_64* m_randomGenerator;
     int m_level;
 };
 

@@ -13,19 +13,19 @@
 
 #include "Header.h"
 
-Header::Header()
-    : m_randomGenerator((unsigned long) time(nullptr)),
-      m_level(0)
+Header::Header(std::mt19937_64* t_generator, int t_level)
+    : m_randomGenerator(t_generator),
+      m_level(t_level)
 {}
 
-void Header::generate()
+void Header::display()
 {
     std::vector<std::string> headers = {
             "bubbles", "watermelons", "big mountains", "have fun",
             "good luck", "champagne", "great", "eat a melon", "oh, no",
             "don't you touch my guitar.", "weird things", "what a strange lady.",
             "New York", "this is a robbery", "sir", "madam", "fantastic",
-            "house party"
+            "house party", "pizza", "I love", "that is"
     };
     std::vector<std::string> usedWords {};
 
@@ -33,7 +33,7 @@ void Header::generate()
     std::uniform_int_distribution<int> wordcount(1, 2);
 
     std::string words;
-    int wordsToDisplay = wordcount(m_randomGenerator);
+    int wordsToDisplay = wordcount(*m_randomGenerator);
     bool capitalizeNextWord = true;
 
     std::cout << "<h" << m_level + 1 << ">";
@@ -41,7 +41,7 @@ void Header::generate()
     int i = 0;
     while (i < wordsToDisplay)
     {
-        std::string randomWord = headers[distance(m_randomGenerator)];
+        std::string randomWord = headers[distance(*m_randomGenerator)];
 
         if (std::find(usedWords.begin(), usedWords.end(), randomWord) == usedWords.end())
         {
@@ -70,9 +70,4 @@ void Header::generate()
     }
 
     std::cout << "</h" << m_level + 1 << ">" << std::endl;
-}
-
-void Header::setLevel(int t_level)
-{
-    m_level = t_level;
 }

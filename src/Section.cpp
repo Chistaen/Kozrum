@@ -7,9 +7,13 @@
  * @license     Apache 2.0
  */
 
+#include <iostream>
+
 #include "Section.h"
 
 void Section::generate()
 {
+    std::cout << "<p>This is a paragraph.";
 
+    std::cout << "</p>" << std::endl;
 }

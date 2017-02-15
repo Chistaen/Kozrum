@@ -13,36 +13,46 @@
 #include "Header.h"
 #include "Section.h"
 
-std::mt19937_64 randomGenerator((unsigned long) time(nullptr));
+std::mt19937_64* randomGenerator = new std::mt19937_64(((unsigned long) time(nullptr)));
 
-Header header;
+Header* header;
 Section section;
 
-int main() {
+int main()
+{
     std::uniform_int_distribution<int> sections(2, 10);
     std::uniform_int_distribution<int> levels(1, 3);
+    std::uniform_int_distribution<int> paragraphs(1, 5);
 
-    std::string currentSection = "init";
     std::vector<std::string> closeTags;
 
-    int nr = sections(randomGenerator);
+    int numberOfSections = sections(*randomGenerator);
+    int numberOfParagraphs = paragraphs(*randomGenerator);
     int currentLevel = 0;
-    int maxLevel = levels(randomGenerator);
+    int maxLevel = levels(*randomGenerator);
 
-    for (int i = 0; i < nr; i++)
+    for (int i = 0; i < numberOfSections; i++)
     {
         while (currentLevel < maxLevel)
         {
-            header.setLevel(currentLevel);
-            header.generate();
-            section.generate();
+            header = new Header(randomGenerator, currentLevel);
+            header->display();
+
+            for (int j = 0; j < numberOfParagraphs; j++)
+            {
+                section.generate();
+            }
+
             currentLevel++;
+            delete header;
         }
 
-        maxLevel = levels(randomGenerator);
+        maxLevel = levels(*randomGenerator);
+        numberOfParagraphs = paragraphs(*randomGenerator);
         currentLevel = 0;
         std::cout << std::endl;
     }
 
+    delete randomGenerator;
     return 0;
 }

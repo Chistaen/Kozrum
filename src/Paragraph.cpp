@@ -11,7 +11,8 @@
 
 #include "Paragraph.h"
 
-Paragraph::Paragraph()
+Paragraph::Paragraph(Grammar t_grammar)
+    : m_grammar(t_grammar)
 {
 
 }

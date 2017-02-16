@@ -10,11 +10,16 @@
 #ifndef KOZRUM_SECTION_H
 #define KOZRUM_SECTION_H
 
+#include "Grammar.h"
+
 class Paragraph
 {
 public:
-    Paragraph();
+    Paragraph(Grammar t_grammar);
     void display();
+
+private:
+    Grammar m_grammar;
 };
 
 #endif //KOZRUM_CONTENT_H

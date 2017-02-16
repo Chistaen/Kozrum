@@ -16,10 +16,12 @@
 std::mt19937_64* randomGenerator;
 Header* header;
 Paragraph* paragraph;
+Grammar* grammar;
 
 int main()
 {
     randomGenerator = new std::mt19937_64(((unsigned long) time(nullptr)));
+    grammar = new Grammar();
 
     std::uniform_int_distribution<int> sections(2, 10);
     std::uniform_int_distribution<int> levels(1, 3);
@@ -41,7 +43,7 @@ int main()
 
             for (int j = 0; j < numberOfParagraphs; j++)
             {
-                paragraph = new Paragraph();
+                paragraph = new Paragraph(*grammar);
                 paragraph->display();
             }
 
@@ -61,6 +63,8 @@ int main()
 
     delete randomGenerator;
     randomGenerator = nullptr;
+    delete grammar;
+    grammar = nullptr;
 
     return 0;
 }

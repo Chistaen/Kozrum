@@ -10,12 +10,10 @@
 #ifndef KOZRUM_GRAMMAR_H
 #define KOZRUM_GRAMMAR_H
 
-
 class Grammar
 {
 public:
     Grammar();
 };
-
 
 #endif //KOZRUM_GRAMMAR_H

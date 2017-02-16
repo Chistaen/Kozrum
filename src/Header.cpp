@@ -26,7 +26,7 @@ void Header::display()
         "don't you touch my guitar.", "weird things", "what a strange lady.",
         "New York", "this is a robbery", "sir", "madam", "fantastic",
         "house party", "pizza", "I love", "that is", "lasagna", "she said",
-        "beer", "whiskey"
+        "beer", "whiskey", "this is so cool", "let's go for a swim"
     };
     std::vector<std::string> usedWords {};
 

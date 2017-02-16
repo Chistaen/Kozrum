@@ -14,10 +14,13 @@
 
 Grammar::Grammar()
 {
-
+    //set();
 }
 
 void Grammar::set()
 {
-    m_grammar.push_back("");
+    m_grammar->push_back("{subject} {verb} {object}");
+    m_grammar->push_back("{subject} {verb} {object} {time}");
+    m_grammar->push_back("{subject} {verb} {object} {location}");
+    m_grammar->push_back("{subject} {verb} {object} {location} {time}");
 }

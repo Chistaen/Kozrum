@@ -10,6 +10,8 @@
 #ifndef KOZRUM_GRAMMAR_H
 #define KOZRUM_GRAMMAR_H
 
+#include <vector>
+
 class Grammar
 {
 public:
@@ -17,7 +19,7 @@ public:
 
 private:
     void set();
-    std::vector<std::string> m_grammar;
+    std::vector<std::string>* m_grammar;
 };
 
 #endif //KOZRUM_GRAMMAR_H

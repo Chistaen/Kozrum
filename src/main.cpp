@@ -11,15 +11,16 @@
 #include <random>
 
 #include "Header.h"
-#include "Section.h"
+#include "Paragraph.h"
 
-std::mt19937_64* randomGenerator = new std::mt19937_64(((unsigned long) time(nullptr)));
-
+std::mt19937_64* randomGenerator;
 Header* header;
-Section section;
+Paragraph* paragraph;
 
 int main()
 {
+    randomGenerator = new std::mt19937_64(((unsigned long) time(nullptr)));
+
     std::uniform_int_distribution<int> sections(2, 10);
     std::uniform_int_distribution<int> levels(1, 3);
     std::uniform_int_distribution<int> paragraphs(1, 5);
@@ -40,11 +41,16 @@ int main()
 
             for (int j = 0; j < numberOfParagraphs; j++)
             {
-                section.generate();
+                paragraph = new Paragraph();
+                paragraph->display();
             }
 
             currentLevel++;
+
             delete header;
+            header = nullptr;
+            delete paragraph;
+            paragraph = nullptr;
         }
 
         maxLevel = levels(*randomGenerator);
@@ -54,5 +60,7 @@ int main()
     }
 
     delete randomGenerator;
+    randomGenerator = nullptr;
+
     return 0;
 }

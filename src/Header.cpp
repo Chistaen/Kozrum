@@ -21,11 +21,12 @@ Header::Header(std::mt19937_64* t_generator, int t_level)
 void Header::display()
 {
     std::vector<std::string> headers = {
-            "bubbles", "watermelons", "big mountains", "have fun",
-            "good luck", "champagne", "great", "eat a melon", "oh, no",
-            "don't you touch my guitar.", "weird things", "what a strange lady.",
-            "New York", "this is a robbery", "sir", "madam", "fantastic",
-            "house party", "pizza", "I love", "that is"
+        "bubbles", "watermelons", "big mountains", "have fun",
+        "good luck", "champagne", "great", "eat a melon", "oh, no",
+        "don't you touch my guitar.", "weird things", "what a strange lady.",
+        "New York", "this is a robbery", "sir", "madam", "fantastic",
+        "house party", "pizza", "I love", "that is", "lasagna", "she said",
+        "beer", "whiskey"
     };
     std::vector<std::string> usedWords {};
 

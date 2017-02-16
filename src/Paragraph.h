@@ -10,10 +10,11 @@
 #ifndef KOZRUM_SECTION_H
 #define KOZRUM_SECTION_H
 
-class Section
+class Paragraph
 {
 public:
-    void generate();
+    Paragraph();
+    void display();
 };
 
 #endif //KOZRUM_CONTENT_H

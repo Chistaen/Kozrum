@@ -9,9 +9,14 @@
 
 #include <iostream>
 
-#include "Section.h"
+#include "Paragraph.h"
 
-void Section::generate()
+Paragraph::Paragraph()
+{
+
+}
+
+void Paragraph::display()
 {
     std::cout << "<p>This is a paragraph.";
 

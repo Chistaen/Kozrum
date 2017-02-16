@@ -14,6 +14,10 @@ class Grammar
 {
 public:
     Grammar();
+
+private:
+    void set();
+    std::vector<std::string> m_grammar;
 };
 
 #endif //KOZRUM_GRAMMAR_H

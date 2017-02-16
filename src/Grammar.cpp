@@ -7,9 +7,17 @@
  * @license     Apache 2.0
  */
 
+#include <iostream>
+#include <vector>
+
 #include "Grammar.h"
 
 Grammar::Grammar()
 {
 
+}
+
+void Grammar::set()
+{
+    m_grammar.push_back("");
 }

@@ -3,5 +3,5 @@ project(Kozrum)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES src/main.cpp src/Header.cpp src/Header.h src/Paragraph.cpp src/Paragraph.h)
+set(SOURCE_FILES src/main.cpp src/Header.cpp src/Header.h src/Paragraph.cpp src/Paragraph.h src/Grammar.cpp src/Grammar.h)
 add_executable(Kozrum ${SOURCE_FILES})

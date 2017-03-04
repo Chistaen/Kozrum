@@ -29,7 +29,7 @@ int main()
 	bool active = true;
 	while (active)
 	{
-		// Syntax: install from repository http://github.com/Chistaen/Kozrum.git into /srv/http
+		// Syntax: install from repository http://github.com/Chistaen/Kozrum.git into /srv/http/Kozrum
 		active = awaitCommand();
 	}
 
@@ -76,7 +76,7 @@ void processCommand(std::string t_command)
 		return;
 	}
 
-	bool result;
+	bool result = false;
 	if (command == 0)
 		result = installPackage(parsedCommand);
 
@@ -107,20 +107,55 @@ bool installPackage(std::vector<std::string> t_arguments)
 	}
 
 	std::string source = t_arguments[1] + " " + t_arguments[2];
-	std::string target = t_arguments[3] + " " + t_arguments[4];
+	std::string target = t_arguments[5];
 
 	if (source != "from repository")
 	{
 		std::cout << "Invalid source " << t_arguments[1] << std::endl;
 		return false;
 	}
-	else if (t_arguments[3] != "into")
+	else if (t_arguments[4] != "into")
 	{
-		std::cout << "Invalid target operator " << t_arguments[3] << std::endl;
+		std::cout << "Invalid target operator " << t_arguments[4] << std::endl;
 		return false;
 	}
 
-	std::cout << "Installing package..." << std::endl;
+	std::cout << "Installing package into " << target << "..." << std::endl;
 
-	return true;
+	std::string commandCreateDir = "sudo mkdir -m 755 " + target;
+	std::string commandGit = "git clone " + t_arguments[3] + " " + target;
+
+	int exitCode;
+	if (system(NULL))
+	{
+		std::cout << commandCreateDir << std::endl;
+		exitCode = system(commandCreateDir.c_str());
+
+		if (exitCode != 0)
+		{
+			std::cout << "Could not create directory" << std::endl;
+			return false;
+		}
+		else
+			std::cout << "Directory created." << std::endl;
+
+		std::cout << commandGit << std::endl;
+		exitCode = system(commandGit.c_str());
+
+		if (exitCode != 0)
+		{
+			std::cout << "Could not clone git repository." << std::endl;
+			return false;
+		}
+		else
+		{
+			std::cout << "Repository cloned." << std::endl;
+			return true;
+		}
+	}
+	else
+	{
+		std::cout << "No terminal found." << std::endl;
+		return false;
+	}
 }

@@ -122,25 +122,13 @@ bool installPackage(std::vector<std::string> t_arguments)
 
 	std::cout << "Installing package into " << target << "..." << std::endl;
 
-	std::string commandCreateDir = "sudo mkdir -m 755 " + target;
-	std::string commandGit = "git clone " + t_arguments[3] + " " + target;
+	std::string command = "git clone " + t_arguments[3] + " " + target;
 
 	int exitCode;
 	if (system(NULL))
 	{
-		std::cout << commandCreateDir << std::endl;
-		exitCode = system(commandCreateDir.c_str());
-
-		if (exitCode != 0)
-		{
-			std::cout << "Could not create directory" << std::endl;
-			return false;
-		}
-		else
-			std::cout << "Directory created." << std::endl;
-
-		std::cout << commandGit << std::endl;
-		exitCode = system(commandGit.c_str());
+		std::cout << command << std::endl;
+		exitCode = system(command.c_str());
 
 		if (exitCode != 0)
 		{

@@ -2,6 +2,7 @@
 ## 1. Installation
 ### 1.1. Requirements
 * G++/GCC or any other C++ compiler
+* Git
 
 ### 1.2. How to install
 1. Clone this repository to your computer
@@ -11,3 +12,10 @@
 g++ -o Kozrum.exe -std=c++11 Kozrum.cpp
 '''
 4. Run ./Kozrum.exe
+
+## 2. Usage
+### 2.1. Installing from a Github repository
+Run the following command (note: the target directory should not exist):
+'''
+install from repository {repo_cloning_url} into {target_directory}
+'''

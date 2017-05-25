@@ -13,8 +13,25 @@
 const std::string t_kozrum_version = "1.0.0";
 const int t_copyright_year = 2017;
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc > 1)
+    {
+        std::string str_command = "";
+
+        for (int i = 1; i < argc; i++)
+        {
+            str_command += argv[i];
+            str_command += " ";
+        }
+
+        Command command(str_command);
+        command.parse();
+        command.execute();
+
+        return 0;
+    }
+
     std::cout << "*** Welcome to Kozrum ***" << std::endl;
     std::cout << "Copyright: " << t_copyright_year << ", Kozrum" << std::endl;
     std::cout << "Version: " << t_kozrum_version << "\n\n";
@@ -24,7 +41,7 @@ int main()
     std::string current_command = "";
     while (running)
     {
-        std::cout << "> ";
+        std::cout << "kozrum > ";
         std::getline(std::cin, current_command);
 
         Command command(current_command);

@@ -13,6 +13,7 @@
 
 void report(std::string t_message);
 void report(std::string t_message, bool t_status);
+void report_error(std::string t_message);
 void clear_screen();
 
 #endif

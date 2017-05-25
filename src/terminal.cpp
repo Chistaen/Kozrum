@@ -34,7 +34,12 @@ void report(std::string t_message, bool t_status)
         std::cout << " ";
     }
 
-    std::cout << (t_status ? "OK" : "FAILED") << std::endl;
+    std::cout << (t_status ? "\033[32mOK\033[0m" : "\033[31mFAILED\033[0m") << std::endl;
+}
+
+void report_error(std::string t_message)
+{
+    std::cout << "\033[31m  [error] \033[0m" << t_message << std::endl;
 }
 
 void clear_screen()
@@ -47,6 +52,5 @@ void clear_screen()
         std::cout << std::endl;
     }
 
-    // Move the cursor to the top
     printf("\033[%d;%dH", 1, 1);
 }

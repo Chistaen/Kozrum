@@ -10,6 +10,7 @@ LIBRARIES =
 $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $(EXECUTABLE) $(LIBRARIES)
 	mv src/*.o bin/
+	sudo cp $(EXECUTABLE) /usr/bin/kozrum
 
 %.o: %.cpp
 	$(CXX) -c $(CXX_FLAGS) $< -o $@

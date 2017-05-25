@@ -42,6 +42,10 @@ void Command::execute()
     {
         m_is_exit = true;
     }
+    else if (m_parsed_command[0] == "help")
+    {
+        display_all();
+    }
     else if (m_parsed_command[0] == "clear")
     {
         clear_screen();
@@ -49,11 +53,31 @@ void Command::execute()
     else
     {
         report("Executing command", false);
-        report("An error occurred: command not found!");
+        report_error("Command not found");
     }
 }
 
 bool Command::is_exit()
 {
     return m_is_exit;
+}
+
+void Command::display_all()
+{
+    if (m_parsed_command.size() > 1)
+    {
+        report_error("Too many arguments");
+        return;
+    }
+
+    std::string commands[] = {
+        "clear", "exit", "help", "install"
+    };
+
+    for (std::string command : commands)
+    {
+        std::cout << command << " ";
+    }
+
+    std::cout << std::endl;
 }

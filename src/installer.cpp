@@ -23,7 +23,7 @@ void Installer::run()
     if (m_command_size < 4)
     {
         report("Validating command", false);
-        report("Too few parameters.");
+        report_error("Too few parameters.");
         return;
     }
 
@@ -35,8 +35,14 @@ void Installer::run()
         if (!std::regex_match(m_command[3], std::regex(".+[a-zA-Z0-9]:[a-zA-Z0-9].+")))
         {
             report("Reading package name", false);
-            report("Unknown package name format");
+            report_error("Unknown package name format");
             return;
         }
+    }
+    else
+    {
+        report("Preparing operation", false);
+        report_error("Operation not recognized");
+        return;
     }
 }

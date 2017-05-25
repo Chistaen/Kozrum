@@ -25,6 +25,8 @@ private:
     std::vector<std::string> m_parsed_command;
     int m_command_size;
     bool m_is_exit;
+
+    void display_all();
 };
 
 #endif

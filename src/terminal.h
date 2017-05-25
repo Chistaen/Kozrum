@@ -16,4 +16,7 @@ void report(std::string t_message, bool t_status);
 void report_error(std::string t_message);
 void clear_screen();
 
+bool ask_for_confirmation();
+bool is_positive();
+
 #endif

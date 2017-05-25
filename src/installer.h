@@ -22,6 +22,7 @@ private:
     std::vector<std::string> m_command;
     int m_command_size;
     int m_installation_type;
+    bool check_repository_status(std::string t_repository_name);
 };
 
 #endif

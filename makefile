@@ -11,6 +11,8 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $(EXECUTABLE) $(LIBRARIES)
 	mv src/*.o bin/
 	sudo cp $(EXECUTABLE) /usr/bin/kozrum
+	sudo mkdir /usr/bin/kozrum_includes
+	#sudo cp src/*.py /usr/bin/kozrum_includes/*.py
 
 %.o: %.cpp
 	$(CXX) -c $(CXX_FLAGS) $< -o $@

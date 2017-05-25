@@ -1,10 +1,13 @@
 # Kozrum
 ## 1. Installation
 ### 1.1. Requirements
-* G++/GCC or any other C++ compiler
-* Make
-* Git
 * Any Linux distribution
+* Git
+* Python 3
+
+#### 1.1.1. For compilation
+* Any other C++ compiler
+* Make
 
 ### 1.2. How to install
 1. `git clone https://github.com/Chistaen/Kozrum.git`

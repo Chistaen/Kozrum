@@ -7,6 +7,8 @@
  */
 
 #include "terminal.h"
+#include <algorithm>
+#include <cctype>
 #include <iostream>
 #include <sys/ioctl.h>
 #include <string>
@@ -52,5 +54,25 @@ void clear_screen()
         std::cout << std::endl;
     }
 
+    // Move the cursor to the top
     printf("\033[%d;%dH", 1, 1);
+}
+
+bool ask_for_confirmation()
+{
+    std::cout << "Would you like to continue? [Y/n] ";
+    return is_positive();
+}
+
+bool is_positive()
+{
+    std::string input;
+    getline(std::cin, input);
+
+    for (int i = 0; i < input.length(); i++)
+    {
+        input[i] = tolower(input[i]);
+    }
+
+    return input == "y" || input == "yes";
 }

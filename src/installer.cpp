@@ -6,12 +6,12 @@
  * @license		MIT
  */
 
-#include "installer.h"
-#include "terminal.h"
 #include <iostream>
 #include <vector>
 #include <string>
 #include <regex>
+#include "installer.h"
+#include "terminal.h"
 
 Installer::Installer(std::vector<std::string> t_command, int t_command_size) :
     m_command(t_command),
@@ -45,4 +45,25 @@ void Installer::run()
         report_error("Operation not recognized");
         return;
     }
+
+    if (!ask_for_confirmation())
+    {
+        report("Aborting installation...");
+        return;
+    }
+
+    if (!check_repository_status(m_command[3]))
+    {
+        report("Checking repository status", false);
+        report_error("Could not verify repository status");
+        return;
+    }
+    else
+        report("Checking repository status", true);
+}
+
+bool Installer::check_repository_status(std::string t_repository_name)
+{
+    // http_funcs.py
+    return false;
 }

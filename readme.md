@@ -9,7 +9,7 @@
 2. CD to the directory you cloned Kozrum to
 3. Run the following command from a terminal:
 '''
-g++ -o Kozrum.exe -std=c++11 Kozrum.cpp
+make
 '''
 4. Run ./Kozrum.exe
 

@@ -9,8 +9,14 @@
 #include <iostream>
 #include "terminal.h"
 
+const std::string t_kozrum_version = "1.0.0";
+const int t_copyright_year = 2017;
+
 int main()
 {
-    std::cout << "Hello World!" << std::endl;
+    std::cout << "*** Welcome to Kozrum ***" << std::endl;
+    std::cout << "Copyright: " << t_copyright_year << ", Kozrum" << std::endl;
+    std::cout << "Version: " << t_kozrum_version << "\n\n";
+    std::cout << "Please enter a command..." << std::endl;
     return 0;
 }

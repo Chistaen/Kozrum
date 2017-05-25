@@ -11,6 +11,7 @@
 
 #include <string>
 
-void report(std::string t_message, bool t_has_status, bool t_status, bool t_include_dots);
+void report(std::string t_message);
+void report(std::string t_message, bool t_status);
 
 #endif

@@ -30,7 +30,23 @@ void report(std::string t_message, bool t_status)
     int amount_of_spaces = terminal_size.ws_col - (message_length + status_length);
 
     for (int i = 0; i < amount_of_spaces; i++)
+    {
         std::cout << " ";
+    }
 
     std::cout << (t_status ? "OK" : "FAILED") << std::endl;
+}
+
+void clear_screen()
+{
+    struct winsize terminal_size;
+    ioctl(0, TIOCGWINSZ, &terminal_size);
+
+    for (int i = 0; i < terminal_size.ws_row; i++)
+    {
+        std::cout << std::endl;
+    }
+
+    // Move the cursor to the top
+    printf("\033[%d;%dH", 1, 1);
 }

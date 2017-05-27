@@ -12,6 +12,8 @@
 #include <iostream>
 #include <sstream>
 
+std::vector<std::string> Command::m_last_command;
+
 Command::Command(std::string t_command)
     : m_command(t_command)
 {
@@ -25,6 +27,15 @@ void Command::parse()
 	for (std::string m_command; command_separator >> m_command;)
 	{
 		m_parsed_command.push_back(m_command);
+    }
+
+    if (m_parsed_command[0] != "retry")
+    {
+        m_last_command = m_parsed_command;
+    }
+    else
+    {
+        m_parsed_command = m_last_command;
     }
 
     m_command_size = m_parsed_command.size();
@@ -71,7 +82,7 @@ void Command::display_all()
     }
 
     std::string commands[] = {
-        "clear", "exit", "help", "install"
+        "clear", "exit", "help", "install", "retry"
     };
 
     for (std::string command : commands)

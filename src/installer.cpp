@@ -46,12 +46,6 @@ void Installer::run()
         return;
     }
 
-    if (!ask_for_confirmation())
-    {
-        report("Aborting installation...");
-        return;
-    }
-
     if (!check_repository_status(m_command[3]))
     {
         report("Checking repository status", false);
@@ -60,6 +54,14 @@ void Installer::run()
     }
     else
         report("Checking repository status", true);
+
+    report("The following git file will be used: https://github.com/");
+
+    if (!ask_for_confirmation())
+    {
+        report("Aborting installation...");
+        return;
+    }
 }
 
 bool Installer::check_repository_status(std::string t_repository_name)

@@ -21,11 +21,11 @@ public:
     bool is_exit();
 
 private:
+    static std::vector<std::string> m_last_command;
     std::string m_command;
     std::vector<std::string> m_parsed_command;
     int m_command_size;
     bool m_is_exit;
-
     void display_all();
 };
 

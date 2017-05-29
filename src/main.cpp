@@ -7,6 +7,7 @@
  */
 
 #include <iostream>
+#include <curl/curl.h>
 #include "terminal.h"
 #include "command.h"
 
@@ -15,6 +16,8 @@ const int t_copyright_year = 2017;
 
 int main(int argc, char* argv[])
 {
+    curl_global_init(CURL_GLOBAL_ALL);
+
     if (argc > 1)
     {
         std::string str_command = "";
@@ -50,6 +53,8 @@ int main(int argc, char* argv[])
 
         running = !command.is_exit();
     }
+
+    curl_global_cleanup();
 
     return 0;
 }

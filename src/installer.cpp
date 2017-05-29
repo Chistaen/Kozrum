@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <regex>
+#include "http.h"
 #include "installer.h"
 #include "terminal.h"
 
@@ -38,6 +39,9 @@ void Installer::run()
             report_error("Unknown package name format");
             return;
         }
+
+        m_repository_name = m_command[3];
+        set_repo_url();
     }
     else
     {
@@ -46,16 +50,17 @@ void Installer::run()
         return;
     }
 
-    if (!check_repository_status(m_command[3]))
+    // Note: move to separate method
+    if (!check_repository_status())
     {
         report("Checking repository status", false);
-        report_error("Could not verify repository status");
+        report_error("Could not verify repository status. Repository might not exist.");
         return;
     }
     else
         report("Checking repository status", true);
 
-    report("The following git file will be used: https://github.com/");
+    report("Preparing to fetch git file at: " + m_repo_url);
 
     if (!ask_for_confirmation())
     {
@@ -64,8 +69,31 @@ void Installer::run()
     }
 }
 
-bool Installer::check_repository_status(std::string t_repository_name)
+std::vector<std::string> Installer::parse_repository_name()
 {
-    // http_funcs.py
-    return false;
+    std::vector<std::string> parsed_repo;
+    std::string delimiter = ":";
+    std::string author = m_repository_name.substr(0, m_repository_name.find(delimiter));
+
+    // Ignore the 'author:' part, since we only need the name of the repository
+    int begin_here_for_repo = author.size() + 1;
+    std::string repository = m_repository_name.substr(begin_here_for_repo, m_repository_name.size());
+
+    parsed_repo.push_back(author);
+    parsed_repo.push_back(repository);
+    return parsed_repo;
+}
+
+bool Installer::check_repository_status()
+{
+    HTTP connection(m_repo_url);
+    bool connection_attempt = connection.connect();
+
+    return connection_attempt;
+}
+
+void Installer::set_repo_url()
+{
+    std::vector<std::string> parsed_repo_name = parse_repository_name();
+    m_repo_url = "http://github.com/" + parsed_repo_name[0] + "/" + parsed_repo_name[1] + ".git";
 }

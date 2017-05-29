@@ -42,29 +42,55 @@ void Installer::run()
 
         m_repository_name = m_command[3];
         set_repo_url();
+
+        // Note: move to separate method
+        if (!check_repository_status())
+        {
+            report("Checking repository status", false);
+            report_error("Could not verify repository status. Repository might not exist.");
+            return;
+        }
+        else
+            report("Checking repository status", true);
+
+        report("Preparing to fetch git file at: " + m_repo_url);
+
+        if (!ask_for_confirmation())
+        {
+            report("Aborting installation...");
+            return;
+        }
+
+        std::string shell_command = "git clone " + m_repo_url + (m_command_size > 4 ? " " + m_command[4] : "");
+
+        if (system(NULL))
+        {
+            std::cout << shell_command << std::endl;
+            int exit_code = system(shell_command.c_str());
+
+            if (exit_code != 0)
+            {
+                report("Cloning Git repository", false);
+                report_error("Could not clone git repository.");
+                return;
+            }
+            else
+            {
+                report("Cloning Git repository", true);
+            }
+        }
+        else
+        {
+            report_error("No terminal found.");
+            return;
+        }
+
+        report ("Package installed");
     }
     else
     {
         report("Preparing operation", false);
         report_error("Operation not recognized");
-        return;
-    }
-
-    // Note: move to separate method
-    if (!check_repository_status())
-    {
-        report("Checking repository status", false);
-        report_error("Could not verify repository status. Repository might not exist.");
-        return;
-    }
-    else
-        report("Checking repository status", true);
-
-    report("Preparing to fetch git file at: " + m_repo_url);
-
-    if (!ask_for_confirmation())
-    {
-        report("Aborting installation...");
         return;
     }
 }

@@ -28,7 +28,7 @@ void Installer::run()
         return;
     }
 
-    // The repository name needs to have the following format: author/repository
+    // The repository name needs to have the following format: author:repository
     if (m_command[1] + " " + m_command[2] == "from repository")
     {
         m_installation_type = 0;
@@ -61,8 +61,14 @@ void Installer::run()
             return;
         }
 
+        if (m_command_size > 4 && m_command[4] == "here")
+        {
+            m_command[4] = ".";
+        }
+
         std::string shell_command = "git clone " + m_repo_url + (m_command_size > 4 ? " " + m_command[4] : "");
 
+        // Todo: move to terminal.cpp
         if (system(NULL))
         {
             std::cout << shell_command << std::endl;
@@ -85,7 +91,7 @@ void Installer::run()
             return;
         }
 
-        report ("Package installed");
+        report ("Repository cloned");
     }
     else
     {
@@ -93,6 +99,13 @@ void Installer::run()
         report_error("Operation not recognized");
         return;
     }
+
+    if (ask_for_confirmation("Detect and execute SQL files?"))
+    {
+        report("Preparing to locate .sql files...");
+    }
+    else
+        return;
 }
 
 std::vector<std::string> Installer::parse_repository_name()

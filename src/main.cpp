@@ -14,6 +14,11 @@
 const std::string t_kozrum_version = "1.0.0";
 const int t_copyright_year = 2017;
 
+void display_about()
+{
+    std::cout << "Test";
+}
+
 int main(int argc, char* argv[])
 {
     curl_global_init(CURL_GLOBAL_ALL);

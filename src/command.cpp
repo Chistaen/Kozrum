@@ -29,15 +29,7 @@ void Command::parse()
 		m_parsed_command.push_back(m_command);
     }
 
-    if (m_parsed_command[0] != "retry")
-    {
-        m_last_command = m_parsed_command;
-    }
-    else
-    {
-        m_parsed_command = m_last_command;
-    }
-
+    m_last_command = (m_parsed_command[0] != "retry" ? m_parsed_command : m_last_command);
     m_command_size = m_parsed_command.size();
 }
 

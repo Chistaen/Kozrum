@@ -64,6 +64,12 @@ bool ask_for_confirmation()
     return is_positive();
 }
 
+bool ask_for_confirmation(std::string t_message)
+{
+    std::cout << t_message << " [Y/n] ";
+    return is_positive();
+}
+
 bool is_positive()
 {
     std::string input;

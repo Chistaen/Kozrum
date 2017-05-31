@@ -17,6 +17,7 @@ void report_error(std::string t_message);
 void clear_screen();
 
 bool ask_for_confirmation();
+bool ask_for_confirmation(std::string t_message);
 bool is_positive();
 
 #endif

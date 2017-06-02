@@ -8,20 +8,18 @@
 
 #include <iostream>
 #include <curl/curl.h>
-#include "terminal.h"
+#include "utils.h"
 #include "command.h"
+#include "argumentparser.h"
 
 const std::string t_kozrum_version = "1.0.0";
 const int t_copyright_year = 2017;
 
-void display_about()
-{
-    std::cout << "Test";
-}
-
 int main(int argc, char* argv[])
 {
     curl_global_init(CURL_GLOBAL_ALL);
+
+    kozrum::ArgumentParser::instantiate(argc, argv);
 
     if (argc > 1)
     {
@@ -33,7 +31,7 @@ int main(int argc, char* argv[])
             str_command += " ";
         }
 
-        Command command(str_command);
+        kozrum::Command command(str_command);
         command.parse();
         command.execute();
 
@@ -52,7 +50,7 @@ int main(int argc, char* argv[])
         std::cout << "kozrum > ";
         std::getline(std::cin, current_command);
 
-        Command command(current_command);
+        kozrum::Command command(current_command);
         command.parse();
         command.execute();
 

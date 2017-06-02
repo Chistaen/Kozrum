@@ -12,22 +12,25 @@
 #include <vector>
 #include <string>
 
-class Installer
+namespace kozrum
 {
-public:
-    Installer(std::vector<std::string> t_command, int t_command_size);
-    void run();
+    class Installer
+    {
+    public:
+        Installer(std::vector<std::string> t_command, int t_command_size);
+        void run();
 
-private:
-    std::vector<std::string> m_command;
-    int m_command_size;
-    int m_installation_type;
-    std::string m_repository_name;
-    std::string m_repo_url;
+    private:
+        std::vector<std::string> m_command;
+        int m_command_size;
+        int m_installation_type;
+        std::string m_repository_name;
+        std::string m_repo_url;
 
-    void set_repo_url();
-    std::vector<std::string> parse_repository_name();
-    bool check_repository_status();
-};
+        void set_repo_url();
+        std::vector<std::string> parse_repository_name();
+        bool check_repository_status();
+    };
+}
 
 #endif

@@ -12,16 +12,19 @@
 #include <curl/curl.h>
 #include <string>
 
-class HTTP
+namespace kozrum
 {
-public:
-    HTTP(std::string t_url);
-    ~HTTP();
-    bool connect();
+	class HTTP
+	{
+	public:
+	    HTTP(std::string t_url);
+	    ~HTTP();
+	    bool connect();
 
-private:
-    CURL* m_curl;
-    std::string m_url;
-};
+	private:
+	    CURL* m_curl;
+	    std::string m_url;
+	};
+}
 
 #endif

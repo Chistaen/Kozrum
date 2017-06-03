@@ -7,9 +7,10 @@
 ### 2.1. Requirements
 * Any Linux distribution
 * Git
+* Python 3.6
 
 #### 2.1.1. For compilation
-* Any other C++ compiler
+* C++ compiler
 * Make
 
 ### 2.2. How to install

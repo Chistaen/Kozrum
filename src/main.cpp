@@ -6,6 +6,7 @@
  * @license		MIT
  */
 
+#include <Python.h>
 #include <iostream>
 #include <curl/curl.h>
 #include "utils.h"
